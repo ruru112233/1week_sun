@@ -16,6 +16,9 @@ public class ObjPoolGen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InvokeRepeating("SmallMeteo", 0.0f, 3.0f);
+        InvokeRepeating("NomalMeteo", 100.0f, 10.0f);
+        InvokeRepeating("BigMeteo", 200.0f, 20.0f);
         InvokeRepeating("GetRightDrop", 0.0f, 1.0f);
         InvokeRepeating("GetLeftDrop", 0.0f, 1.0f);
     }
@@ -24,6 +27,57 @@ public class ObjPoolGen : MonoBehaviour
     void Update()
     {
         
+    }
+
+    // ¬θ¦Ξ‚π¶¬
+    void SmallMeteo()
+    {
+        foreach (Transform t in smallMeteoPool.transform)
+        {
+            if (!t.gameObject.activeSelf)
+            {
+                t.SetPositionAndRotation(InstancePoint(), Quaternion.identity);
+                t.gameObject.SetActive(true);
+                return;
+            }
+        }
+
+        GameObject obj = smallMeteoPool.transform.GetChild(0).gameObject;
+        Instantiate(obj, InstancePoint(), Quaternion.identity, smallMeteoPool.transform);
+    }
+
+    // ’†θ¦Ξ‚π¶¬
+    void NomalMeteo()
+    {
+        foreach (Transform t in nomalMeteoPool.transform)
+        {
+            if (!t.gameObject.activeSelf)
+            {
+                t.SetPositionAndRotation(InstancePoint(), Quaternion.identity);
+                t.gameObject.SetActive(true);
+                return;
+            }
+        }
+
+        GameObject obj = nomalMeteoPool.transform.GetChild(0).gameObject;
+        Instantiate(obj, InstancePoint(), Quaternion.identity, nomalMeteoPool.transform);
+    }
+
+    // ‘εθ¦Ξ‚π¶¬
+    void BigMeteo()
+    {
+        foreach (Transform t in bigMeteoPool.transform)
+        {
+            if (!t.gameObject.activeSelf)
+            {
+                t.SetPositionAndRotation(InstancePoint(), Quaternion.identity);
+                t.gameObject.SetActive(true);
+                return;
+            }
+        }
+
+        GameObject obj = bigMeteoPool.transform.GetChild(0).gameObject;
+        Instantiate(obj, InstancePoint(), Quaternion.identity, bigMeteoPool.transform);
     }
 
     // ‰E‰ρ“]‚Μ…“H‚π¶¬
