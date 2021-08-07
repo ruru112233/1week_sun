@@ -42,6 +42,7 @@ public class WaterDropController : MeteoriteController
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("è¡Ç¶ÇΩ");
+            instancTime = 0;
             gameObject.SetActive(false);
         }
     }
