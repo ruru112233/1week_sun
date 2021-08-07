@@ -30,6 +30,11 @@ public class Player : MonoBehaviour
         {
             float z = speed * Time.deltaTime;
             transform.position += transform.forward * z;
+            if(transform.localScale.x > 0.75f) transform.localScale -= new Vector3(Time.deltaTime,0,0);
+        }
+        else
+        {
+            if(transform.localScale.x < 1.0f) transform.localScale += new Vector3(Time.deltaTime, 0, 0);
         }
         
         //WSキー、↑↓キーで上下の方向を替える
