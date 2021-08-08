@@ -17,8 +17,6 @@ public class WaterDropController : MeteoriteController
     // Update is called once per frame
     public override void Update()
     {
-        Debug.Log(sunObj);
-
         if (leftFlag)
         {
             transform.RotateAround(sunObj.transform.position, Vector3.up, speed * Time.deltaTime);
@@ -30,7 +28,7 @@ public class WaterDropController : MeteoriteController
 
         instancTime += Time.deltaTime;
 
-        if (instancTime > 150.0f)
+        if (instancTime > 130.0f)
         {
             instancTime = 0;
             gameObject.SetActive(false);

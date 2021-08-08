@@ -16,9 +16,9 @@ public class ObjPoolGen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SmallMeteo", 0.0f, 3.0f);
-        InvokeRepeating("NomalMeteo", 100.0f, 10.0f);
-        InvokeRepeating("BigMeteo", 200.0f, 20.0f);
+        InvokeRepeating("SmallMeteo", 0.0f, 5.0f);
+        InvokeRepeating("NomalMeteo", 100.0f, 12.0f);
+        InvokeRepeating("BigMeteo", 200.0f, 22.0f);
         InvokeRepeating("GetRightDrop", 0.0f, 1.0f);
         InvokeRepeating("GetLeftDrop", 0.0f, 1.0f);
     }
@@ -83,35 +83,43 @@ public class ObjPoolGen : MonoBehaviour
     // âEâÒì]ÇÃêÖìHÇê∂ê¨
     void GetRightDrop()
     {
-        foreach (Transform t in rightDropPool.transform)
+        for (int i = 0; i < 2; i++)
         {
-            if (!t.gameObject.activeSelf)
+            foreach (Transform t in rightDropPool.transform)
             {
-                t.SetPositionAndRotation(InstancePoint(), Quaternion.identity);
-                t.gameObject.SetActive(true);
-                return;
+                if (!t.gameObject.activeSelf)
+                {
+                    t.SetPositionAndRotation(InstancePoint(), Quaternion.identity);
+                    t.gameObject.SetActive(true);
+                    return;
+                }
             }
-        }
 
-        GameObject obj = rightDropPool.transform.GetChild(0).gameObject;
-        Instantiate(obj, InstancePoint(), Quaternion.identity, rightDropPool.transform);
+            GameObject obj = rightDropPool.transform.GetChild(0).gameObject;
+            Instantiate(obj, InstancePoint(), Quaternion.identity, rightDropPool.transform);
+        }
+        
     }
 
     // ç∂âÒì]ÇÃêÖìHÇê∂ê¨
     void GetLeftDrop()
     {
-        foreach (Transform t in leftDropPool.transform)
+        for (int i = 0; i < 2; i++)
         {
-            if (!t.gameObject.activeSelf)
+            foreach (Transform t in leftDropPool.transform)
             {
-                t.SetPositionAndRotation(InstancePoint(), Quaternion.identity);
-                t.gameObject.SetActive(true);
-                return;
+                if (!t.gameObject.activeSelf)
+                {
+                    t.SetPositionAndRotation(InstancePoint(), Quaternion.identity);
+                    t.gameObject.SetActive(true);
+                    return;
+                }
             }
-        }
 
-        GameObject obj = leftDropPool.transform.GetChild(0).gameObject;
-        Instantiate(obj, InstancePoint(), Quaternion.identity, leftDropPool.transform);
+            GameObject obj = leftDropPool.transform.GetChild(0).gameObject;
+            Instantiate(obj, InstancePoint(), Quaternion.identity, leftDropPool.transform);
+        }
+        
     }
 
     // ê∂ê¨à íuÇÃéZèo
