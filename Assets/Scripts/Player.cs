@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     {
         StartPosition();
         Move();
+        MeteoPosCheck();
     }
 
     private void FixedUpdate()
@@ -92,6 +93,48 @@ public class Player : MonoBehaviour
         }
     }
 
+    // 隕石とプレイヤーの位置から、プレイヤーの近くに隕石があるか判定
+    void MeteoPosCheck()
+    {
+        float distance = Vector3.Distance(FindMeteo().transform.position, this.transform.position);
+        
+        if (distance < 150)
+        {
+            Debug.Log("隕石接近中");
+            GameManager.instance.emergencyPanel.SetActive(true);
+        }
+        else
+        {
+            GameManager.instance.emergencyPanel.SetActive(false);
+        }
+    }
+
+    // 一番近い隕石を取得
+    GameObject FindMeteo()
+    {
+        GameObject[] meteos = GameObject.FindGameObjectsWithTag("Meteorite");
+        GameObject closest = null;
+
+        float distance = Mathf.Infinity;
+
+        Vector3 position = transform.position;
+
+        foreach (GameObject meteo in meteos)
+        {
+            Vector3 diff = meteo.transform.position - position;
+
+            float curDistance = diff.sqrMagnitude;
+
+            if (curDistance < distance)
+            {
+                closest = meteo;
+                distance = curDistance;
+            }
+        }
+
+        return closest;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "WaterDrop")
@@ -101,7 +144,7 @@ public class Player : MonoBehaviour
             boostSlider.maxValue += 0.1f;
             dropCount++;
             speed += 1.0f;
-            angleSpeed += 0.1f;
+            angleSpeed += 0.2f;
         }
     }
 }
