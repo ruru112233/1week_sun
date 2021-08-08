@@ -128,9 +128,9 @@ public class ObjPoolGen : MonoBehaviour
         Vector3 pos = new Vector3();
 
         // —”‚Ìİ’è
-        float x = Random.Range(80.0f, 500.0f);
-        float y = Random.Range(80.0f, 500.0f);
-        float z = Random.Range(80.0f, 500.0f);
+        float x = Random.Range(80.0f, 450.0f);
+        float y = Random.Range(80.0f, 450.0f);
+        float z = Random.Range(80.0f, 450.0f);
 
         bool checkX = false;
         bool checkY = false;
