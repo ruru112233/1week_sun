@@ -42,8 +42,8 @@ public class ObjPoolGen : MonoBehaviour
             }
         }
 
-        GameObject obj = smallMeteoPool.transform.GetChild(0).gameObject;
-        Instantiate(obj, InstancePoint(), Quaternion.identity, smallMeteoPool.transform);
+        //GameObject obj = smallMeteoPool.transform.GetChild(0).gameObject;
+        //Instantiate(obj, InstancePoint(), Quaternion.identity, smallMeteoPool.transform);
     }
 
     // ’†θ¦Ξ‚π¶¬
@@ -59,8 +59,8 @@ public class ObjPoolGen : MonoBehaviour
             }
         }
 
-        GameObject obj = nomalMeteoPool.transform.GetChild(0).gameObject;
-        Instantiate(obj, InstancePoint(), Quaternion.identity, nomalMeteoPool.transform);
+        //GameObject obj = nomalMeteoPool.transform.GetChild(0).gameObject;
+        //Instantiate(obj, InstancePoint(), Quaternion.identity, nomalMeteoPool.transform);
     }
 
     // ‘εθ¦Ξ‚π¶¬
@@ -76,14 +76,14 @@ public class ObjPoolGen : MonoBehaviour
             }
         }
 
-        GameObject obj = bigMeteoPool.transform.GetChild(0).gameObject;
-        Instantiate(obj, InstancePoint(), Quaternion.identity, bigMeteoPool.transform);
+        //GameObject obj = bigMeteoPool.transform.GetChild(0).gameObject;
+        //Instantiate(obj, InstancePoint(), Quaternion.identity, bigMeteoPool.transform);
     }
 
     // ‰E‰ρ“]‚Μ…“H‚π¶¬
     void GetRightDrop()
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             foreach (Transform t in rightDropPool.transform)
             {
@@ -95,8 +95,8 @@ public class ObjPoolGen : MonoBehaviour
                 }
             }
 
-            GameObject obj = rightDropPool.transform.GetChild(0).gameObject;
-            Instantiate(obj, InstancePoint(), Quaternion.identity, rightDropPool.transform);
+            //GameObject obj = rightDropPool.transform.GetChild(0).gameObject;
+            //Instantiate(obj, InstancePoint(), Quaternion.identity, rightDropPool.transform);
         }
         
     }
@@ -104,7 +104,7 @@ public class ObjPoolGen : MonoBehaviour
     // ¶‰ρ“]‚Μ…“H‚π¶¬
     void GetLeftDrop()
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             foreach (Transform t in leftDropPool.transform)
             {
@@ -116,8 +116,8 @@ public class ObjPoolGen : MonoBehaviour
                 }
             }
 
-            GameObject obj = leftDropPool.transform.GetChild(0).gameObject;
-            Instantiate(obj, InstancePoint(), Quaternion.identity, leftDropPool.transform);
+            //GameObject obj = leftDropPool.transform.GetChild(0).gameObject;
+            //Instantiate(obj, InstancePoint(), Quaternion.identity, leftDropPool.transform);
         }
         
     }
