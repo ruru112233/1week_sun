@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
         // ‘¾—z‚Æ‚ÌŠÔŠu‚ğ‘ª’è
         float distance = Vector3.Distance(sunObj.transform.position, this.transform.position);
 
-        if (distance > 800)
+        if (distance > outField)
         {
             this.transform.LookAt(sunObj.transform);
         }
@@ -108,6 +108,8 @@ public class Player : MonoBehaviour
             GameManager.instance.emergencyPanel.SetActive(false);
         }
     }
+
+    
 
     // ˆê”Ô‹ß‚¢è¦Î‚ğæ“¾
     GameObject FindMeteo()
