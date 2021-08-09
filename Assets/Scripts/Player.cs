@@ -209,7 +209,6 @@ public class Player : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.y, transform.localScale.y, transform.localScale.z);
             transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
-            boostSlider.maxValue += 0.1f;
             dropCount++;
             speed += 1.0f;
             angleSpeed += 0.2f;
@@ -219,6 +218,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Meteorite")
         {
             Debug.Log("ゲームオーバー");
+            GameManager.instance.gameOverPanel.SetActive(true);
             GameOver();
         }
     }
@@ -226,13 +226,15 @@ public class Player : MonoBehaviour
     // ゲームオーバーの処理
     private async void GameOver()
     {
+        AudioManager.instance.PlaySE(3);
+
         GameManager.instance.gameOverFlag = true;
 
         int score = CalcScript.ScoreCalc();
-        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score);
-
+        
         await Task.Delay(1000);
-
+        
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score);
     }
 
 }

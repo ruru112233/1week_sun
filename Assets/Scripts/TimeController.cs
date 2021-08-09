@@ -25,8 +25,8 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        curTime += Time.deltaTime;
-
+        if (!GameManager.instance.gameOverFlag) curTime += Time.deltaTime;
+        
         DateTimeInGame dateTimeInGame = RealTimeToGameTime(curTime);
 
         timeText.text = TimeTextView(dateTimeInGame);
