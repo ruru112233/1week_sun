@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
 
     private int dropCount = 1;
 
+    [SerializeField]
+    private GameObject particle = null;
+
     public int DropCount
     {
         get { return dropCount; }
@@ -41,6 +44,7 @@ public class Player : MonoBehaviour
     {
         sunObj = GameObject.FindWithTag("SunObj");
         rb = GetComponent<Rigidbody>();
+        particle.SetActive(false);
     }
 
     // Update is called once per frame
@@ -107,18 +111,21 @@ public class Player : MonoBehaviour
             boostSlider.value -= Time.deltaTime / 3;
             moveZ = speed * 2 * Time.deltaTime;
             if (transform.localScale.x > scaleCorrection1) transform.localScale -= new Vector3(Time.deltaTime * dropCount, 0, 0);
+            particle.SetActive(true);
         }
         else if (Input.GetKey(KeyCode.Space))
         {
             moveZ = speed * Time.deltaTime;
             boostSlider.value += Time.deltaTime / 7;
             if (transform.localScale.x > scaleCorrection1) transform.localScale -= new Vector3(Time.deltaTime * dropCount, 0, 0);
+            particle.SetActive(false);
         }
         else
         {
             moveZ = 0;
             boostSlider.value += Time.deltaTime / 7;
             if (transform.localScale.x <= scaleCorrection2) transform.localScale += new Vector3(Time.deltaTime * dropCount, 0, 0);
+            particle.SetActive(false);
         }
 
     }
@@ -131,7 +138,8 @@ public class Player : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.y, transform.localScale.y, transform.localScale.z);
         moveZ = 0;
         overHeartTime += Time.deltaTime;
-        
+        particle.SetActive(false);
+
         if (overHeartTime >= 2.0)
         {
             overHeat = false;
