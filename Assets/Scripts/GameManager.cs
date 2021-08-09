@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         emergencyPanel.SetActive(false);
+        AudioManager.instance.PlayBGM(0);
     }
 
     // Update is called once per frame
