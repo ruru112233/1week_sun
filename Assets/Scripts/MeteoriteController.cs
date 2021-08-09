@@ -18,6 +18,7 @@ public class MeteoriteController : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
-        transform.RotateAround(sunObj.transform.position, Vector3.up, speed * Time.deltaTime);
+        if (!GameManager.instance.gameOverFlag) 
+          transform.RotateAround(sunObj.transform.position, Vector3.up, speed * Time.deltaTime);
     }
 }

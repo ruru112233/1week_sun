@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public GameObject emergencyPanel;
 
+    // ゲームオーバーフラグ
+    public bool gameOverFlag = false;
+
     public static GameManager instance = null;
 
     private void Awake()

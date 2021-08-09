@@ -11,6 +11,11 @@ public class TimeController : MonoBehaviour
 
     float curTime = 0;
 
+    public float CurTime
+    {
+        get { return curTime; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
