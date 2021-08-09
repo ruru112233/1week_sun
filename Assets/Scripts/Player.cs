@@ -56,12 +56,23 @@ public class Player : MonoBehaviour
             StartPosition();
             if (!overHeat)
             {
+                if (Input.GetKeyDown(KeyCode.F) && Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.F) && Input.GetKeyDown(KeyCode.Space))
+                {
+                    AudioManager.instance.PlaySE(1);
+                }
+                else if (Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.Space))
+                {
+                    AudioManager.instance.StopSe();
+                }
+
                 Move();
             }
             else
             {
                 // オーバーヒート
                 OverHeart();
+                if(overHeartTime <= 0.2f)
+                  AudioManager.instance.StopSe();
             }
             MeteoPosCheck();
         }
@@ -202,6 +213,7 @@ public class Player : MonoBehaviour
             dropCount++;
             speed += 1.0f;
             angleSpeed += 0.2f;
+            AudioManager.instance.PlaySE(0);
         }
 
         if (other.gameObject.tag == "Meteorite")

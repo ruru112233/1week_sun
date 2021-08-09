@@ -126,6 +126,14 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void StopSe()
+    {
+        for (int i = 0; i < se.Length; i++)
+        {
+            se[i].Stop();
+        }
+    }
+
     // BGMのスライダー
     public void BgmSliderVolume(float volume)
     {
