@@ -171,10 +171,10 @@ public class Player : MonoBehaviour
         GameManager.instance.gameOverFlag = true;
 
         int score = CalcScript.ScoreCalc();
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score);
 
         await Task.Delay(1000);
 
-        
     }
 
 }
