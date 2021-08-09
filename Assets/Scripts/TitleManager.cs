@@ -8,13 +8,20 @@ public class TitleManager : MonoBehaviour
 {
     [SerializeField]
     private Button gameStartButton = null
-                 , playManualButton = null;
+                 , playManualButton = null
+                 , closeButton = null;
+
+    [SerializeField]
+    private GameObject manualPanel = null;
 
     // Start is called before the first frame update
     void Start()
     {
         gameStartButton.onClick.SetListener(GameStartButton);
         playManualButton.onClick.SetListener(GameManualButton);
+        closeButton.onClick.SetListener(CloseButton);
+        AudioManager.instance.PlayBGM(0);
+        manualPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -32,6 +39,11 @@ public class TitleManager : MonoBehaviour
     // —V‚Ñ•û
     void GameManualButton()
     {
+        manualPanel.SetActive(true);
+    }
 
+    void CloseButton()
+    {
+        manualPanel.SetActive(false);
     }
 }

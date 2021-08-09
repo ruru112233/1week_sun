@@ -24,7 +24,10 @@ public class DropSearch : MonoBehaviour
     void LookAtDrop()
     {
         GameObject obj = SearchScript.FindDrop(player.transform);
-
-        this.transform.LookAt(obj.transform);
+        if (obj != null)
+        {
+            this.transform.LookAt(obj.transform);
+        }
+        
     }
 }

@@ -164,16 +164,19 @@ public class Player : MonoBehaviour
     // 隕石とプレイヤーの位置から、プレイヤーの近くに隕石があるか判定
     void MeteoPosCheck()
     {
-        float distance = Vector3.Distance(FindMeteo().transform.position, this.transform.position);
-        
-        if (distance < 150)
+        if (FindMeteo() != null)
         {
-            Debug.Log("隕石接近中");
-            GameManager.instance.emergencyPanel.SetActive(true);
-        }
-        else
-        {
-            GameManager.instance.emergencyPanel.SetActive(false);
+            float distance = Vector3.Distance(FindMeteo().transform.position, this.transform.position);
+
+            if (distance < 150)
+            {
+                Debug.Log("隕石接近中");
+                GameManager.instance.emergencyPanel.SetActive(true);
+            }
+            else
+            {
+                GameManager.instance.emergencyPanel.SetActive(false);
+            }
         }
     }
 
