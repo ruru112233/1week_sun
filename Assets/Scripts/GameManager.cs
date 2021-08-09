@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject emergencyPanel;
 
+    public GameObject gameOverPanel = null;
+
     // ゲームオーバーフラグ
     public bool gameOverFlag = false;
 
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         emergencyPanel.SetActive(false);
+        gameOverPanel.SetActive(false);
         AudioManager.instance.PlayBGM(0);
     }
 
