@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,8 @@ public class Player : MonoBehaviour
                 , outField = 0;
 
     float moveZ = 0f;
+    float overHeartTime = 0;
+    bool overHeat = false;
 
     [SerializeField]
     private Slider boostSlider;
@@ -43,10 +46,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (!GameManager.instance.gameOverFlag)
         {
             StartPosition();
-            Move();
+            if (!overHeat)
+            {
+                Move();
+            }
+            else
+            {
+                // オーバーヒート
+                OverHeart();
+            }
             MeteoPosCheck();
         }
     }
@@ -79,6 +91,13 @@ public class Player : MonoBehaviour
     // 移動
     void Move()
     {
+
+        if (boostSlider.value <= 0)
+        {
+            overHeat = true;
+            return;
+        }
+
         float scaleCorrection1 = transform.localScale.y * 0.75f;
         float scaleCorrection2 = transform.localScale.y;
 
@@ -92,6 +111,7 @@ public class Player : MonoBehaviour
         else if (Input.GetKey(KeyCode.Space))
         {
             moveZ = speed * Time.deltaTime;
+            boostSlider.value += Time.deltaTime / 7;
             if (transform.localScale.x > scaleCorrection1) transform.localScale -= new Vector3(Time.deltaTime * dropCount, 0, 0);
         }
         else
@@ -100,6 +120,26 @@ public class Player : MonoBehaviour
             boostSlider.value += Time.deltaTime / 7;
             if (transform.localScale.x <= scaleCorrection2) transform.localScale += new Vector3(Time.deltaTime * dropCount, 0, 0);
         }
+
+    }
+
+    // バーストを全て使い切ると、一時的に動けないようになる
+    void OverHeart()
+    {
+        Debug.Log("オーバーヒート");
+        gameObject.GetComponent<Renderer>().material.color = Color.red;
+        transform.localScale = new Vector3(transform.localScale.y, transform.localScale.y, transform.localScale.z);
+        moveZ = 0;
+        overHeartTime += Time.deltaTime;
+        
+        if (overHeartTime >= 2.0)
+        {
+            overHeat = false;
+            overHeartTime = 0;
+            boostSlider.value = 0.01f;
+            gameObject.GetComponent<Renderer>().material.color = Color.white;
+        }
+
     }
 
     // 隕石とプレイヤーの位置から、プレイヤーの近くに隕石があるか判定
@@ -117,8 +157,6 @@ public class Player : MonoBehaviour
             GameManager.instance.emergencyPanel.SetActive(false);
         }
     }
-
-    
 
     // 一番近い隕石を取得
     GameObject FindMeteo()
