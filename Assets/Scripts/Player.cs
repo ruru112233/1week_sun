@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,11 @@ public class Player : MonoBehaviour
 {
 
     private int dropCount = 1;
+
+    public int DropCount
+    {
+        get { return dropCount; }
+    }
 
     [SerializeField]
     private float speed = 0;
@@ -37,9 +43,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartPosition();
-        Move();
-        MeteoPosCheck();
+        if (!GameManager.instance.gameOverFlag)
+        {
+            StartPosition();
+            Move();
+            MeteoPosCheck();
+        }
     }
 
     private void FixedUpdate()
@@ -148,5 +157,24 @@ public class Player : MonoBehaviour
             speed += 1.0f;
             angleSpeed += 0.2f;
         }
+
+        if (other.gameObject.tag == "Meteorite")
+        {
+            Debug.Log("ゲームオーバー");
+            GameOver();
+        }
     }
+
+    // ゲームオーバーの処理
+    private async void GameOver()
+    {
+        GameManager.instance.gameOverFlag = true;
+
+        int score = CalcScript.ScoreCalc();
+
+        await Task.Delay(1000);
+
+        
+    }
+
 }
