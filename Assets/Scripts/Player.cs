@@ -211,10 +211,10 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "WaterDrop")
         {
             transform.localScale = new Vector3(transform.localScale.y, transform.localScale.y, transform.localScale.z);
-            transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
+            transform.localScale += new Vector3(0.3f, 0.3f, 0.3f);
             dropCount++;
             speed += 1.0f;
-            angleSpeed += 0.2f;
+            angleSpeed += 0.3f;
             AudioManager.instance.PlaySE(0);
         }
 
