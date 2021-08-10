@@ -33,17 +33,20 @@ public class TitleManager : MonoBehaviour
     // ゲームスタート
     void GameStartButton()
     {
+        AudioManager.instance.PlaySE(4);
         SceneManager.LoadScene("GameScene");
     }
 
     // 遊び方
     void GameManualButton()
     {
+        AudioManager.instance.PlaySE(4);
         manualPanel.SetActive(true);
     }
 
     void CloseButton()
     {
+        AudioManager.instance.PlaySE(4);
         manualPanel.SetActive(false);
     }
 }
