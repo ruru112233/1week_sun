@@ -76,6 +76,13 @@ public class Player : MonoBehaviour
             }
             MeteoPosCheck();
         }
+        else
+        {
+            if (Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.Space))
+            {
+                AudioManager.instance.StopSe();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -239,7 +246,7 @@ public class Player : MonoBehaviour
 
         await Task.Delay(500);
 
-        AudioManager.instance.StopSe();
+        
     }
 
 }

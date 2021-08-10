@@ -27,11 +27,13 @@ public class OnClick : MonoBehaviour
     void OnReTry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        AudioManager.instance.PlaySE(4);
     }
 
     // ƒ^ƒCƒgƒ‹‚É–ß‚é
     void OnTitle()
     {
         SceneManager.LoadScene("TitleScene");
+        AudioManager.instance.PlaySE(4);
     }
 }
